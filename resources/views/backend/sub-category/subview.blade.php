@@ -29,7 +29,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($subsubcategory as $item)
+                      @isset($subsubcategory)
+                      @foreach ($subsubcategory as $item)
                         <tr>
                             <td>{{$item['category']['category_name_en']}}</td>
                             <td>{{$item['subcategory']['subcategory_name_en']}}</td>
@@ -41,6 +42,9 @@
                             </td>
                         </tr>
                         @endforeach
+                          
+                      @endisset
+                        
                     </tbody>
                   </table>
                 </div>

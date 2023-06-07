@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -96,7 +97,20 @@ Route::prefix('category')->group(function(){
     Route::get('sub/sub/view',[SubCategoryController::class,'subsubview'])->name('all.subsubCategory');
     Route::get('subcategory/ajax/{category_id}',[SubCategoryController::class,'getsubCategory']);
     Route::post('sub/sub/store',[SubCategoryController::class,'subsubstore'])->name('subsubcategory.store');
-    Route::get('sub/edit/{id}',[SubCategoryController::class,'subsubedit'])->name('subsubcategory.edit');
+    Route::get('sub/sub/edit/{id}',[SubCategoryController::class,'subsubedit'])->name('subsubcategory.edit');
     Route::post('sub/sub/update',[SubCategoryController::class,'subsubupdate'])->name('subsubcategory.update');
+    
+
+});
+
+
+// Admin Product Routes
+
+Route::prefix('product')->group(function(){
+    Route::get('/add',[ProductController::class,'addproduct'])->name('all.product');
+    Route::post('/store',[BrandController::class,'store'])->name('brand.store');
+    Route::get('/edit/{id}',[BrandController::class,'edit'])->name('brand.edit');
+    Route::post('/update',[BrandController::class,'update'])->name('brand.update');
+    Route::get('/delete/{id}',[BrandController::class,'destroy'])->name('brand.delete');
 
 });
