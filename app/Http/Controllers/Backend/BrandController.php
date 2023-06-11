@@ -137,4 +137,5 @@ class BrandController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
 }

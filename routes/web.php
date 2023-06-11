@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -34,7 +35,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth:admin');
 
 
 
@@ -43,7 +44,11 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 })->name('dashboard');
 
 
-// Admin All route
+
+Route::middleware(['auth:admin'])->group(function(){
+
+
+    // Admin All route
 Route::get('admin/logut',[AdminController::class,'destroy'])->name('admin.logout');
 Route::get('admin/profile',[AdminProfileController::class,'profile'])->name('admin.profile');
 Route::get('admin/profile/edit',[AdminProfileController::class,'editProfile'])->name('admin.profile.edit');
@@ -51,21 +56,6 @@ Route::post('admin/profile/store',[AdminProfileController::class,'profileStore']
 Route::get('admin/change/password',[AdminProfileController::class,'adminChangePassword'])->name('admin.change.password');
 Route::post('update/change/password',[AdminProfileController::class,'updatePassword'])->name('admin.update.password');
 
-
-// User All Routes
-
-Route::get('/',[IndexController::class,'index']);
-
-Route::get('user/logout',[IndexController::class,'userLogout'])->name('user.logout');
-Route::get('user/profile',[IndexController::class,'userProfile'])->name('user.profile');
-Route::post('user/profile/store',[IndexController::class,'userProfileStore'])->name('user.profile.store');
-Route::get('user/change/password',[IndexController::class,'userChangePassword'])->name('change.password');
-Route::post('user/update/password',[IndexController::class,'userUpdatePassword'])->name('user.change.password');
-
-
-
-
-// Admin Brands Routes
 
 Route::prefix('brand')->group(function(){
     Route::get('/view',[BrandController::class,'viewBrand'])->name('all.brands');
@@ -121,3 +111,37 @@ Route::prefix('product')->group(function(){
     Route::get('/delete/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
 
 });
+
+
+
+
+Route::prefix('slider')->group(function(){
+    Route::get('/view',[SliderController::class,'view'])->name('manage.slider');
+    Route::post('/store',[SliderController::class,'store'])->name('slider.store');
+    Route::get('/edit/{id}',[SliderController::class,'edit'])->name('slider.edit');
+    Route::post('/update',[SliderController::class,'update'])->name('slider.update');
+    Route::get('/delete/{id}',[SliderController::class,'destroy'])->name('slider.delete');
+    Route::get('active/{id}',[SliderController::class,'activeSliver'])->name('slider.active');
+    Route::get('inactive/{id}',[SliderController::class,'inactiveSlider'])->name('slider.inactive');
+
+});
+
+});
+
+
+
+// User All Routes
+
+Route::get('/',[IndexController::class,'index']);
+
+Route::get('user/logout',[IndexController::class,'userLogout'])->name('user.logout');
+Route::get('user/profile',[IndexController::class,'userProfile'])->name('user.profile');
+Route::post('user/profile/store',[IndexController::class,'userProfileStore'])->name('user.profile.store');
+Route::get('user/change/password',[IndexController::class,'userChangePassword'])->name('change.password');
+Route::post('user/update/password',[IndexController::class,'userUpdatePassword'])->name('user.change.password');
+
+
+
+
+// Admin Brands Routes
+
