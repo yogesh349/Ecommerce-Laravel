@@ -25,7 +25,7 @@
                             <th>Sub Category</th>
                             <th>Sub-Sub Category En</th>
                             <th>Sub-Sub Category Hin</th>
-                            <th>Action</th>
+                            <th style="width: 25%">Action</th>
                         </tr>
                     </thead>
                     <tbody>

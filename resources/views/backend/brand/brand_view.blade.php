@@ -23,7 +23,7 @@
                             <th>Brand En</th>
                             <th>Brand Hin</th>
                             <th>Image</th>
-                            <th>Action</th>
+                            <th style="width: 25%">Action</th>
                         </tr>
                     </thead>
                     <tbody>

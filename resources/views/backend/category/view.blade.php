@@ -23,7 +23,7 @@
                             <th>Category Icon</th>
                             <th>Category En</th>
                             <th>Category Hin</th>
-                            <th>Action</th>
+                            <th style="width: 25%">Action</th>
                         </tr>
                     </thead>
                     <tbody>

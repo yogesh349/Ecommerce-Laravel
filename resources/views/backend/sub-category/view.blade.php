@@ -23,7 +23,7 @@
                             <th>Category</th>
                             <th>Sub Category En</th>
                             <th>Sub Category Hin</th>
-                            <th>Action</th>
+                            <th style="width: 25%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,10 +65,10 @@
                         @csrf    
                         
                         <div class="form-group">
-                            <h5>Select Select <span class="text-danger">*</span></h5>
+                            <h5>Category Select <span class="text-danger">*</span></h5>
                             <div class="controls">
                                 <select name="category_id" class="form-control" aria-invalid="false">
-                                    <option selected disabled value="">Select Your City</option>
+                                    <option selected disabled value="">Select Category</option>
                                    @foreach ($category as $item)
                                    <option  value="{{$item->id}}">{{$item->category_name_en}}</option>
                                        

@@ -63,7 +63,7 @@
         </a>
         <ul class="treeview-menu">
           <li class="{{ Request::routeIs('add.product') ? 'active' : '' }}"><a href="{{route('add.product')}}"><i class="ti-more"></i>Add Product</a></li>
-          <li><a href="invoice.html"><i class="ti-more"></i>Manage Product</a></li>\
+          <li class="{{ Request::routeIs('manage.product') ? 'active' : '' }}"><a href="{{route('manage.product')}}"><i class="ti-more"></i>Manage Product</a></li>\
         </ul>
       </li>
 

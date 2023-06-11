@@ -96,6 +96,7 @@ Route::prefix('category')->group(function(){
     // Admin Sub sub category controller
     Route::get('sub/sub/view',[SubCategoryController::class,'subsubview'])->name('all.subsubCategory');
     Route::get('subcategory/ajax/{category_id}',[SubCategoryController::class,'getsubCategory']);
+    Route::get('sub-subcategory/ajax/{subcategory_id}',[SubCategoryController::class,'getsubsubCategory']);
     Route::post('sub/sub/store',[SubCategoryController::class,'subsubstore'])->name('subsubcategory.store');
     Route::get('sub/sub/edit/{id}',[SubCategoryController::class,'subsubedit'])->name('subsubcategory.edit');
     Route::post('sub/sub/update',[SubCategoryController::class,'subsubupdate'])->name('subsubcategory.update');
@@ -107,10 +108,16 @@ Route::prefix('category')->group(function(){
 // Admin Product Routes
 
 Route::prefix('product')->group(function(){
-    Route::get('/add',[ProductController::class,'addproduct'])->name('all.product');
-    Route::post('/store',[BrandController::class,'store'])->name('brand.store');
-    Route::get('/edit/{id}',[BrandController::class,'edit'])->name('brand.edit');
-    Route::post('/update',[BrandController::class,'update'])->name('brand.update');
-    Route::get('/delete/{id}',[BrandController::class,'destroy'])->name('brand.delete');
+    Route::get('/add',[ProductController::class,'addproduct'])->name('add.product');
+    Route::post('/store',[ProductController::class,'store'])->name('product-store');
+    Route::get('/manage',[ProductController::class,'manageProduct'])->name('manage.product');
+    Route::get('/edit/{id}',[ProductController::class,'editProduct'])->name('product.edit');
+    Route::post('/update',[ProductController::class,'updateProduct'])->name('product.update');
+    Route::post('image/update',[ProductController::class,'multiImageUpdate'])->name('update.product.image');
+    Route::post('image/thumbnail/update',[ProductController::class,'updateThumbnailImg'])->name('update.product.thumbmail');
+    Route::get('mulit-image/delete/{id}',[ProductController::class,'multiImagedestroy'])->name('product.multiImage.delete');
+    Route::get('active/{id}',[ProductController::class,'activeProduct'])->name('product.active');
+    Route::get('inactive/{id}',[ProductController::class,'inActiveProduct'])->name('product.inactive');
+    Route::get('/delete/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
 
 });
