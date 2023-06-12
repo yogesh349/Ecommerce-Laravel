@@ -56,13 +56,13 @@
                                 <span class="badge badge-pill badge-danger">InActive</span>
                             @endif</td>
                             <td>
-                                <a href="{{route('product.edit',$item->id)}}" class="btn btn-primary" title="Product Details Data"><i class="fa fa-eye"></i></a>
-                                <a href="{{route('product.edit',$item->id)}}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('product.delete',$item->id)}}" title="Delete Data" class="btn btn-danger"  id="delete"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('product.edit',$item->id)}}" class="btn btn-primary btn-sm" title="Product Details Data"><i class="fa fa-eye"></i></a>
+                                <a href="{{route('product.edit',$item->id)}}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                <a href="{{route('product.delete',$item->id)}}" title="Delete Data" class="btn btn-danger btn-sm"  id="delete"><i class="fa fa-trash"></i></a>
                                 @if ($item->status==1)
-                                <a href="{{route('product.inactive',$item->id)}}" class="btn btn-danger" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
+                                <a href="{{route('product.inactive',$item->id)}}" class="btn btn-danger btn-sm" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
                                 @else
-                                <a href="{{route('product.active',$item->id)}}" class="btn btn-success" title="Active Now"><i class="fa fa-arrow-up"></i></a>
+                                <a href="{{route('product.active',$item->id)}}" class="btn btn-success btn-sm" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                             @endif</td>
                             </td>
                         </tr>
