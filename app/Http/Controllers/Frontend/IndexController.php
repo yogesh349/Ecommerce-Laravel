@@ -12,13 +12,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
     //
     public function index(){
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
-        $categories = Category::orderBy('category_name_en','ASC')->limit(6)->get();
+        $categories = Category::orderBy('category_name_en','ASC')->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
         $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(6)->get();
         $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
@@ -35,6 +36,21 @@ class IndexController extends Controller
 
         return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1'));
     }
+
+
+    public function TagWiseProduct($tag){
+        if(session()->get('language') == 'hindi') {
+            $products = Product::where('status',1)->where('product_tags_hin',$tag)->
+        orderBy('id','DESC')->paginate(3);
+
+        }else{
+            $products = Product::where('status',1)->where('product_tags_en',$tag)->
+        orderBy('id','DESC')->paginate(3);
+        }
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+		return view('frontend.tags.tags_view',compact('products','categories'));
+
+	}
 
     public function userLogout(){
         Auth::logout();
