@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -88,6 +89,143 @@
         
     @endif
   
+  </script>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap" style="height:200px; width:200px;" id="pimage">
+                       
+                      </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">Product Price: <strong class="text-danger"><span id="product_price"> </span></strong> <del id="old_price"></del></li>
+                        <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                        <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                        <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                        <li class="list-group-item">Stock: <span id="available"> </span>  
+                          <span id="stockout"> </span> 
+                          <strong></strong></li>
+                      </ul>
+                    
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Choose Color</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="color">
+                          
+                        </select>
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Choose Size</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="size">
+                          <option>1</option>
+                        </select>
+                      </div>  
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Quantity</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1" >
+                      </div> <!-- // end form group -->
+
+                      <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+                    
+                    
+                    
+                </div>
+
+
+                
+            </div>
+
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+<script type="text/javascript">
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+  function productView(id) {
+    $.ajax({
+        type: "GET",
+        url: "/product/view/modal/"+id,
+        dataType: "json",
+        success: function (response) {
+            $('#pname').text(response.product.product_name_en);
+            $('#pcode').text(response.product.product_code);
+            $('#pcategory').text(response.product.category.category_name_en);
+            $('#pbrand').text(response.product.brand.brand_name_en);
+            $('#pimage').attr('src','upload/products/thumbnail/'+response.product.product_thumbnail);
+            $("select[name='color']").empty();
+            $.each(response.color, function (key, value) { 
+                $("select[name='color']").append("<option value='"+value+"'>"+value+"</option>");
+                 
+            });
+
+            $("select[name='size']").empty();
+            $.each(response.size, function (key, value) { 
+                $("select[name='size']").append("<option value='"+value+"'>"+value+"</option>");  
+            });
+
+
+            if(response.product.discount_price==null){
+              $('#product_price').text('');
+              $('#old_price').text('');
+              $('#product_price').text("Rs "+response.product.selling_price);
+
+
+            }else{
+              $('#product_price').text(response.product.selling_price-response.product.discount_price);
+              $('#old_price').text("Rs "+response.product.selling_price);
+
+            }
+            $('#available').text('');
+            $('#stockout').text('');
+            if (response.product.product_qty >0) {
+              $('#available').text('available');
+              $('#available').css("background","green");
+              
+              $('#available').addClass('badge badge-pill badge-success')
+
+              
+            } else {
+              $('#stockout').text('stockout');
+              $('#stockout').css("background","red");
+              $('#stockout').addClass('badge badge-pill badge-danger')
+              
+            }
+            
+        } 
+    });
+  }
+
   </script>
 </body>
 </html>

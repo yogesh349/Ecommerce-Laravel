@@ -11,84 +11,13 @@ Home|Ecommerce
       <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
         <!-- ================================== TOP NAVIGATION ================================== -->
-       @include('frontend.common1.vertical_menu')
+        @include('frontend.common1.vertical_menu')
         <!-- /.side-menu -->
         <!-- ================================== TOP NAVIGATION : END ================================== -->
 
 
         <!-- ============================================== HOT DEALS ============================================== -->
-        <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-          <h3 class="section-title">hot deals</h3>
-          <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
-
-            @foreach ($hot_deals as $product)
-                
-           
-            <div class="item">
-              <div class="products">
-                <div class="hot-deal-wrapper">
-                  <div class="image"> <img src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""> </div>
-
-                  @php
-                   $amount = $product->selling_price - $product->discount_price;
-                   $discount = 100-($amount/$product->selling_price) * 100;
-        @endphp  
-           @if ($product->discount_price == NULL)
-           <div class="tag new"><span>new</span></div>
-           @else
-           <div class="sale-offer-tag"><span>{{ round($discount) }}%<br>
-            off</span></div>   
-           @endif
-                  
-                  <div class="timing-wrapper">
-                    <div class="box-wrapper">
-                      <div class="date box"> <span class="key">120</span> <span class="value">DAYS</span> </div>
-                    </div>
-                    <div class="box-wrapper">
-                      <div class="hour box"> <span class="key">20</span> <span class="value">HRS</span> </div>
-                    </div>
-                    <div class="box-wrapper">
-                      <div class="minutes box"> <span class="key">36</span> <span class="value">MINS</span> </div>
-                    </div>
-                    <div class="box-wrapper hidden-md">
-                      <div class="seconds box"> <span class="key">60</span> <span class="value">SEC</span> </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.hot-deal-wrapper -->
-
-                <div class="product-info text-left m-t-20">
-                  <h3 class="name"><a href="detail.html">@if(session()->get('language') == 'hindi') {{ $product->product_name_hin }} @else {{ $product->product_name_en }} @endif</a></h3>
-                  <div class="rating rateit-small"></div>
-                  @if ($product->discount_price == NULL)
-                  <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>  </div>
-                      @else
-                  <div class="product-price"> <span class="price"> ${{ $product->selling_price -$product->discount_price }} </span> <span class="price-before-discount">${{ $product->selling_price }}</span> </div>
-                      @endif
-                  <!-- /.product-price -->
-
-                </div>
-                <!-- /.product-info -->
-
-                <div class="cart clearfix animate-effect">
-                  <div class="action">
-                    <div class="add-cart-button btn-group">
-                      <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i
-                          class="fa fa-shopping-cart"></i> </button>
-                      <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                    </div>
-                  </div>
-                  <!-- /.action -->
-                </div>
-                <!-- /.cart -->
-              </div>
-            </div>
-            @endforeach
-
-            
-          </div>
-          <!-- /.sidebar-widget -->
-        </div>
+   @include('frontend.common1.hot_deals')
         <!-- ============================================== HOT DEALS: END ============================================== -->
 
         <!-- ============================================== SPECIAL OFFER ============================================== -->
@@ -102,14 +31,16 @@ Home|Ecommerce
               <div class="item">
                 <div class="products special-product">
 
-                  @foreach ($special_offer as $product)        
+                  @foreach ($special_offer as $product)
                   <div class="product">
                     <div class="product-micro">
                       <div class="row product-micro-row">
                         <div class="col col-xs-5">
                           <div class="product-image">
-                            <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> <img
-                                  src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""> </a> </div>
+                            <div class="image"> <a
+                                href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> <img
+                                  src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt="" style="height:210px;">
+                              </a> </div>
                             <!-- /.image -->
 
                           </div>
@@ -118,15 +49,17 @@ Home|Ecommerce
                         <!-- /.col -->
                         <div class="col col-xs-7">
                           <div class="product-info">
-                            <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
-                              @if(session()->get('language') == 'hindi')
-                               {{ $product->product_name_hin }} 
-                               @else 
-                               {{ $product->product_name_en }} 
-                               @endif
-                            </a></h3>
+                            <h3 class="name"><a
+                                href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
+                                @if(session()->get('language') == 'hindi')
+                                {{ $product->product_name_hin }}
+                                @else
+                                {{ $product->product_name_en }}
+                                @endif
+                              </a></h3>
                             <div class="rating rateit-small"></div>
-                            <div class="product-price"> <span class="price">Rs {{ $product->selling_price }}</span> </div>
+                            <div class="product-price"> <span class="price">Rs {{ $product->selling_price }}</span>
+                            </div>
                             <!-- /.product-price -->
 
                           </div>
@@ -148,7 +81,7 @@ Home|Ecommerce
         <!-- /.sidebar-widget -->
         <!-- ============================================== SPECIAL OFFER : END ============================================== -->
         <!-- ============================================== PRODUCT TAGS ============================================== -->
-         @include('frontend.common1.product_tags')
+        @include('frontend.common1.product_tags')
         <!-- /.sidebar-widget -->
         <!-- ============================================== PRODUCT TAGS : END ============================================== -->
         <!-- ============================================== SPECIAL DEALS ============================================== -->
@@ -166,8 +99,10 @@ Home|Ecommerce
                       <div class="row product-micro-row">
                         <div class="col col-xs-5">
                           <div class="product-image">
-                            <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> <img
-                                  src="{{ asset('upload//products/thumbnail/'.$product->product_thumbnail) }}" alt=""> </a> </div>
+                            <div class="image"> <a
+                                href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> <img
+                                  src="{{ asset('upload//products/thumbnail/'.$product->product_thumbnail) }}" alt="" style="height:210px;">
+                              </a> </div>
                             <!-- /.image -->
 
                           </div>
@@ -176,15 +111,17 @@ Home|Ecommerce
                         <!-- /.col -->
                         <div class="col col-xs-7">
                           <div class="product-info">
-                            <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"> 
-                              @if(session()->get('language') == 'hindi')
-                              {{ $product->product_name_hin }} 
-                              @else 
-                              {{ $product->product_name_en }} 
-                              @endif
-                            </a></h3>
+                            <h3 class="name"><a
+                                href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
+                                @if(session()->get('language') == 'hindi')
+                                {{ $product->product_name_hin }}
+                                @else
+                                {{ $product->product_name_en }}
+                                @endif
+                              </a></h3>
                             <div class="rating rateit-small"></div>
-                            <div class="product-price"> <span class="price"> Rs {{ $product->selling_price }} </span> </div>
+                            <div class="product-price"> <span class="price"> Rs {{ $product->selling_price }} </span>
+                            </div>
                             <!-- /.product-price -->
 
                           </div>
@@ -197,8 +134,8 @@ Home|Ecommerce
 
                   </div>
                   @endforeach
-                  
-                  
+
+
                 </div>
               </div>
               <div class="item">
@@ -413,7 +350,7 @@ Home|Ecommerce
 
         <!-- ============================================== Testimonials============================================== -->
         @include('frontend.common1.testimonials')
-    
+
 
         <!-- ============================================== Testimonials: END ============================================== -->
 
@@ -527,12 +464,13 @@ Home|Ecommerce
                         <div class="product-image">
                           <div class="image"> <a href=""><img
                                 src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""
-                                width="30%" height="30%"></a> </div>
+                                width="30%" height="30%" style="height:210px;"></a> </div>
                           <!-- /.image -->
 
                           @php
                           $amount = $product->selling_price - $product->discount_price;
-                          $discount = ($amount/$product->selling_price) * 100;
+                          $discount =100- ($amount/$product->selling_price) * 100;
+                          
                           @endphp
 
 
@@ -559,9 +497,16 @@ Home|Ecommerce
                           <div class="product-price"> <span class="price">Rs {{ $product->selling_price }} </span>
                           </div>
                           @else
-                          <div class="product-price"> <span class="price">Rs {{ $product->discount_price }} </span>
-                            <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+                          <div class="product-price"> <span class="price">Rs {{ $product->selling_price-$product->discount_price }} </span>
+                            <span class="price-before-discount">Rs {{ $product->selling_price }}</span>
+                          </div>
                           @endif
+
+
+
+
+
+
 
 
                           <!-- /.product-price -->
@@ -572,7 +517,7 @@ Home|Ecommerce
                           <div class="action">
                             <ul class="list-unstyled">
                               <li class="add-cart-button btn-group">
-                                <button data-toggle="tooltip" class="btn btn-primary icon" type="button"
+                                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button"
                                   title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                               </li>
@@ -614,7 +559,8 @@ Home|Ecommerce
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
+                          <div class="image"> <a
+                              href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
                                 src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""></a>
                           </div>
                           <!-- /.image -->
@@ -630,7 +576,8 @@ Home|Ecommerce
                         <!-- /.product-image -->
 
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
+                          <h3 class="name"><a
+                              href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
                               @if(session()->get('language') == 'hindi') {{ $product->product_name_hin }} @else {{
                               $product->product_name_en }} @endif
                             </a></h3>
@@ -733,12 +680,19 @@ Home|Ecommerce
               <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
-                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""></a>
+                    <div class="image"> <a
+                        href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
+                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt="" style="height:210px;"></a>
                     </div>
                     <!-- /.image -->
+                    @php
+                          $amount = $product->selling_price - $product->discount_price;
+                          $discount =100- ($amount/$product->selling_price) * 100;
+                          
+                          @endphp
 
-                    <div>
+
+                    <div> 
                       @if ($product->discount_price == NULL)
                       <div class="tag new"><span>new</span></div>
                       @else
@@ -756,10 +710,10 @@ Home|Ecommerce
                     <div class="rating rateit-small"></div>
                     <div class="description"></div>
                     @if ($product->discount_price == NULL)
-                    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span> </div>
+                    <div class="product-price"> <span class="price">Rs {{ $product->selling_price }} </span> </div>
                     @else
-                    <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span
-                        class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+                    <div class="product-price"> <span class="price">Rs {{ $product->selling_price-$product->discount_price }} </span> <span
+                        class="price-before-discount">Rs {{ $product->selling_price }}</span> </div>
                     @endif
                     <!-- /.product-price -->
 
@@ -769,8 +723,8 @@ Home|Ecommerce
                     <div class="action">
                       <ul class="list-unstyled">
                         <li class="add-cart-button btn-group">
-                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button"
-                            title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart" id="{{$product->id}}" onclick="productView(this.id)"> <i
+                              class="fa fa-shopping-cart"></i> </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
                         <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html"
@@ -803,14 +757,14 @@ Home|Ecommerce
           <!-- /.home-owl-carousel -->
         </section>
         <!-- /.section -->
-        
+
         <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'hindi')
-             {{ $skip_category_0->category_name_hin }} 
-             @else 
-             {{ $skip_category_0->category_name_en }} 
-             @endif
-            </h3>
+            {{ $skip_category_0->category_name_hin }}
+            @else
+            {{ $skip_category_0->category_name_en }}
+            @endif
+          </h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
 
@@ -819,10 +773,16 @@ Home|Ecommerce
               <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
-                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""></a>
+                    <div class="image"> <a
+                        href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
+                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt="" style="height:210px;"></a>
                     </div>
                     <!-- /.image -->
+                          @php
+                          $amount = $product->selling_price - $product->discount_price;
+                          $discount =100- ($amount/$product->selling_price) * 100;
+                          @endphp
+
 
                     <div>
                       @if ($product->discount_price == NULL)
@@ -842,10 +802,10 @@ Home|Ecommerce
                     <div class="rating rateit-small"></div>
                     <div class="description"></div>
                     @if ($product->discount_price == NULL)
-                    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span> </div>
+                    <div class="product-price"> <span class="price">Rs {{ $product->selling_price }} </span> </div>
                     @else
-                    <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span
-                        class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+                    <div class="product-price"> <span class="price">Rs {{ $product->selling_price -$product->discount_price}} </span> <span
+                        class="price-before-discount">Rs {{ $product->selling_price }}</span> </div>
                     @endif
                     <!-- /.product-price -->
 
@@ -855,8 +815,8 @@ Home|Ecommerce
                     <div class="action">
                       <ul class="list-unstyled">
                         <li class="add-cart-button btn-group">
-                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button"
-                            title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i
+                              class="fa fa-shopping-cart"></i> </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
                         <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html"
@@ -893,11 +853,11 @@ Home|Ecommerce
 
         <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'hindi')
-             {{ $skip_category_1->category_name_hin }} 
-             @else 
-             {{ $skip_category_1->category_name_en }} 
-             @endif
-            </h3>
+            {{ $skip_category_1->category_name_hin }}
+            @else
+            {{ $skip_category_1->category_name_en }}
+            @endif
+          </h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
 
@@ -906,10 +866,16 @@ Home|Ecommerce
               <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
-                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""></a>
+                    <div class="image"> <a
+                        href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
+                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}"  style="height:210px;" alt=""></a>
                     </div>
                     <!-- /.image -->
+
+                    @php
+                    $amount = $product->selling_price - $product->discount_price;
+                    $discount =100- ($amount/$product->selling_price) * 100;
+                    @endphp
 
                     <div>
                       @if ($product->discount_price == NULL)
@@ -929,10 +895,10 @@ Home|Ecommerce
                     <div class="rating rateit-small"></div>
                     <div class="description"></div>
                     @if ($product->discount_price == NULL)
-                    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span> </div>
+                    <div class="product-price"> <span class="price"> Rs {{ $product->selling_price }} </span> </div>
                     @else
-                    <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span
-                        class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+                    <div class="product-price"> <span class="price">Rs {{ $product->selling_price -$product->discount_price }} </span> <span
+                        class="price-before-discount">Rs {{ $product->selling_price }}</span> </div>
                     @endif
                     <!-- /.product-price -->
 
@@ -942,8 +908,8 @@ Home|Ecommerce
                     <div class="action">
                       <ul class="list-unstyled">
                         <li class="add-cart-button btn-group">
-                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button"
-                            title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i
+                              class="fa fa-shopping-cart"></i> </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
                         <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html"
@@ -976,15 +942,15 @@ Home|Ecommerce
           <!-- /.home-owl-carousel -->
         </section>
 
-          
-          
 
 
 
 
-          
-          
-         
+
+
+
+
+
         <div class="wide-banners wow fadeInUp outer-bottom-xs">
           <div class="row">
             <div class="col-md-12">
@@ -1017,11 +983,11 @@ Home|Ecommerce
 
         <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'hindi')
-             {{ $skip_brand_1->brand_name_hin }} 
-             @else 
-             {{ $skip_brand_1->brand_name_en }} 
-             @endif
-            </h3>
+            {{ $skip_brand_1->brand_name_hin }}
+            @else
+            {{ $skip_brand_1->brand_name_en }}
+            @endif
+          </h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
 
@@ -1030,8 +996,9 @@ Home|Ecommerce
               <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
-                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" alt=""></a>
+                    <div class="image"> <a
+                        href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img
+                          src="{{ asset('upload/products/thumbnail/'.$product->product_thumbnail) }}" style="height:210px;" alt=""></a>
                     </div>
                     <!-- /.image -->
 
@@ -1066,8 +1033,8 @@ Home|Ecommerce
                     <div class="action">
                       <ul class="list-unstyled">
                         <li class="add-cart-button btn-group">
-                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button"
-                            title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i
+                              class="fa fa-shopping-cart"></i> </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
                         <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html"
@@ -1101,11 +1068,11 @@ Home|Ecommerce
         </section>
 
 
-        
+
         <!-- ============================================== BEST SELLER ============================================== -->
 
 
-       
+
 
         <div class="best-deal wow fadeInUp outer-bottom-xs">
           <h3 class="section-title">Best seller</h3>
