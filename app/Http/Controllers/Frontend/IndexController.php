@@ -19,7 +19,6 @@ class IndexController extends Controller
 {
     //
     public function index(){
-        Cart::destroy();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
