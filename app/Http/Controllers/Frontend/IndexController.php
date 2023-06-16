@@ -9,6 +9,7 @@ use App\Models\MultiImage;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +19,7 @@ class IndexController extends Controller
 {
     //
     public function index(){
+        Cart::destroy();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
@@ -170,8 +172,8 @@ class IndexController extends Controller
 
 
     public function ProductViewAjax($id){
-		$product = Product::with('category','brand')->findOrFail($id);
 
+		$product = Product::with('category','brand')->findOrFail($id);
 		$color = $product->product_color_en;
 		$product_color = explode(',', $color);
 
