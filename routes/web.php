@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -218,3 +219,16 @@ Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct
 Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
+
+
+Route::prefix('coupons')->group(function(){
+    Route::get('/view',[CouponController::class,'view'])->name('manage.coupons');
+    Route::POST('/store',[CouponController::class,'store'])->name('coupon.store');
+
+    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+
+
+});
