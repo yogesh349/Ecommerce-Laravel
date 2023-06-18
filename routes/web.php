@@ -259,8 +259,18 @@ Route::get('/city/view', [ShippingController::class, 'CityView'])->name('manage.
 Route::post('/city/store', [ShippingController::class, 'CityStore'])->name('city.store');
 Route::get('/city/edit/{id}', [ShippingController::class, 'CityEdit'])->name('city.edit');
 Route::post('/city/update/{id}', [ShippingController::class, 'CityUpdate'])->name('city.update');
-Route::get('/city/delete/{id}', [ShippingController::class, 'CityDelete'])->name('city.delete');
+Route::get('/city/delete/{id}', [ShippingController::class, 'CityDelete'])->name('city.delete'); 
 Route::get('/district/ajax/{id}', [ShippingController::class, 'DistrictAjax']);
 
 
 });
+
+
+
+
+// Frontend Coupon Option
+
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
