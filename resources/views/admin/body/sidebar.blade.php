@@ -96,6 +96,22 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Shipping Area</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::routeIs('manage.division') ? 'active' : '' }}"><a href="{{route('manage.division')}}"><i class="ti-more"></i>Ship Province</a></li>
+          <li class="{{ Request::routeIs('manage.district') ? 'active' : '' }}"><a href="{{route('manage.district')}}"><i class="ti-more"></i>Ship District</a></li>
+          <li class="{{ Request::routeIs('manage.district') ? 'active' : '' }}"><a href="{{route('manage.city')}}"><i class="ti-more"></i>Ship City</a></li>
+
+        </ul>
+      </li>
+
       <li class="header nav-small-cap">User Interface</li>
 
       <li class="treeview">
