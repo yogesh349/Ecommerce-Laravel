@@ -1,11 +1,9 @@
 @extends('frontend.main_master')
-@section('content')
 
 @section('title')
  My Cart Page 
 @endsection
-
-
+@section('content')
 <div class="breadcrumb">
 	<div class="container">
 		<div class="breadcrumb-inner">
@@ -90,7 +88,7 @@
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-							<button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+							<a href="{{route('checkout')}}" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</a>
 						
 						</div>
 					</td>
