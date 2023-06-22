@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -213,6 +214,8 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
 
         Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
 
+        Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+
 });
 
 // Cart Page setup
@@ -286,3 +289,8 @@ Route::get('/city-get/ajax/{district_id}', [CheckoutController::class, 'StateGet
 
 
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+
+
+Route::post('/payment-verify',[CheckoutController::class,'verifyPayment'])->name('esewa.payment');
+Route::get('/success',[CheckoutController::class,'successPayment']);
+Route::get('/failure',[CheckoutController::class,'failurePayment']);

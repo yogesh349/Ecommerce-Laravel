@@ -142,8 +142,6 @@ My Checkout
                     <textarea class="form-control" cols="30" rows="5" placeholder="Notes"
                         name="notes"></textarea>
                 </div> <!-- // end form group  -->
-                <button type="submit"
-                    class="btn-upper btn btn-primary checkout-page-button">Login</button>
                 
             </div>
                                         <!-- already-registered-login -->
@@ -249,9 +247,9 @@ My Checkout
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="">Stripe</label> 		
-                            <input type="radio" name="payment_method" value="stripe">
-                            <img src="{{ asset('frontend/assets/images/payments/4.png') }}">		
+                            <label for="">Esewa</label> 		
+                            <input type="radio" name="payment_method" value="esewa">
+                            <img src="{{ asset('frontend/assets/images/esewa.png') }}" width="35px">		
 
                         </div>
                         <div class="col-md-4">
