@@ -52,8 +52,8 @@ class CheckoutController extends Controller
 
         if ($request->payment_method == 'esewa') {
     		return view('frontend.payment.stripe',compact('data','cartTotal','cart'));
-    	}elseif ($request->payment_method == 'card') {
-    		return 'card';
+    	}elseif ($request->payment_method == 'cash') {
+    		return view('frontend.payment.cash',compact('data','cartTotal','cart'));
     	}else{
             return 'cash';
     	}
