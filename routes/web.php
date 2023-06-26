@@ -222,6 +222,10 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
         Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
         Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
+        Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
+        Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
+        Route::get('/cancel/orders', [AllUserController::class, 'CancelOrders'])->name('cancel.orders');
+
 
 });
 
@@ -322,6 +326,7 @@ Route::prefix('orders')->group(function(){
     Route::get('/shipped/delivered/{order_id}', [OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
 
+ 
 
     });
     
