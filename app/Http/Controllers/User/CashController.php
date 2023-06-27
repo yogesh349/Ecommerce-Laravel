@@ -46,7 +46,7 @@ class CashController extends Controller
 			'invoice_no'=>'TRI'.mt_rand(100000,9999999),
 			'order_date'=>Carbon::now()->format('d F Y'),
 			'order_month'=>Carbon::now()->format('F'),
-			'order_year'=>Carbon::now()->format('d F Y'),
+			'order_year'=>Carbon::now()->format('Y'),
 			'status'=>'Pending',
 			'created_at'=>Carbon::now()
 
