@@ -145,6 +145,21 @@
         </ul>
       </li>
 
+
+      <li class="treeview">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Return Order</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::routeIs('return.request') ? 'active' : '' }}"><a href="{{route('return.request')}}"><i class="ti-more"></i>Return Request</a></li>
+          <li class="{{ Request::routeIs('all.request') ? 'active' : '' }}"><a href="{{route('all.request')}}"><i class="ti-more"></i>All Request</a></li>
+        </ul>
+      </li>
+
       
 
 
