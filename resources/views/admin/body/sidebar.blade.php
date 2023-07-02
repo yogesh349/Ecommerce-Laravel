@@ -172,10 +172,10 @@
           <li class="{{ Request::routeIs('pending.review') ? 'active' : '' }}"><a href="{{route('pending.review')}}"><i class="ti-more"></i>Pending Review</a></li>
 
           <li class="{{ Request::routeIs('publish.review') ? 'active' : '' }}"><a href="{{route('publish.review')}}"><i class="ti-more"></i>Publish Review</a></li>
-          
-
         </ul>
       </li>
+
+
 
       
 
@@ -211,6 +211,20 @@
         </a>
         <ul class="treeview-menu">
           <li class="{{ Request::routeIs('all-reports') ? 'active' : '' }}"><a href="{{route('all-reports')}}"><i class="ti-more"></i> All Reports</a></li>
+          
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage Stock</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::routeIs('product.stock') ? 'active' : '' }}"><a href="{{route('product.stock')}}"><i class="ti-more"></i> Product Stock</a></li>
           
         </ul>
       </li>
