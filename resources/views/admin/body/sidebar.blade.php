@@ -160,6 +160,23 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::routeIs('pending.review') ? 'active' : '' }}"><a href="{{route('pending.review')}}"><i class="ti-more"></i>Pending Review</a></li>
+
+          <li class="{{ Request::routeIs('publish.review') ? 'active' : '' }}"><a href="{{route('publish.review')}}"><i class="ti-more"></i>Publish Review</a></li>
+          
+
+        </ul>
+      </li>
+
       
 
 

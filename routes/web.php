@@ -23,6 +23,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 
@@ -389,3 +390,20 @@ Route::prefix('return')->group(function(){
     Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
     Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
   });
+
+
+
+  /// Frontend Product Review Routes
+
+Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
+
+
+
+// Admin Manage Review Routes 
+Route::prefix('review')->group(function(){
+    Route::get('/pending', [ReviewController::class, 'PendingReview'])->name('pending.review');
+    Route::get('/admin/approve/{id}', [ReviewController::class, 'ReviewApprove'])->name('review.approve');
+    Route::get('/publish', [ReviewController::class, 'PublishReview'])->name('publish.review');
+    Route::get('/delete/{id}', [ReviewController::class, 'DeleteReview'])->name('delete.review');
+    
+    });
