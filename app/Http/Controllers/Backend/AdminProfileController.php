@@ -13,17 +13,20 @@ class AdminProfileController extends Controller
 {
     //
     public function profile(){
-        $adminData=Admin::find(1);
+        $admin_id=Auth()->user()->id;
+        $adminData=Admin::find($admin_id);
         return view('admin.profile',compact('adminData'));
     }
     public function editProfile(){
-        $editData=Admin::find(1);
+        $admin_id=Auth()->user()->id;
+        $editData=Admin::find($admin_id);
         return view('admin.profile_edit',compact('editData'));
 
     }
 
     public function profileStore(Request $request){
-        $data=Admin::find(1);
+        $admin_id=Auth()->user()->id;
+        $data=Admin::find($admin_id);
         $data->name=$request->name;
         $data->email=$request->email;
         if($request->hasFile('profile_photo_path')){
@@ -66,7 +69,7 @@ class AdminProfileController extends Controller
             'password'=>'required|confirmed',
         ]
         );
-        $hashedPassword=Admin::find(1)->password;
+        $hashedPassword=Auth()->user()->password;
         if(Hash::check($request->current_password,$hashedPassword)){
             $admin=Admin::find(1);
             if($request->password==$request->password_confirmation){

@@ -24,6 +24,27 @@
         </a>
       </li>
 
+      @php
+        $brand = (auth()->guard('admin')->user()->brandd == 1);
+        $category = (auth()->guard('admin')->user()->category == 1);
+        $product = (auth()->guard('admin')->user()->product == 1);
+        $slider = (auth()->guard('admin')->user()->slider == 1);
+        $coupons = (auth()->guard('admin')->user()->coupons == 1);
+        $shipping = (auth()->guard('admin')->user()->shipping == 1);
+        $blog = (auth()->guard('admin')->user()->blog == 1);
+        $setting = (auth()->guard('admin')->user()->setting == 1);
+        $returnorder = (auth()->guard('admin')->user()->returnorder == 1);
+        $review = (auth()->guard('admin')->user()->review == 1);
+        $orders = (auth()->guard('admin')->user()->orders == 1);
+        $stock = (auth()->guard('admin')->user()->stock == 1);
+        $reports = (auth()->guard('admin')->user()->reports == 1);
+        $alluser = (auth()->guard('admin')->user()->alluser == 1);
+        $adminuserrole = (auth()->guard('admin')->user()->adminuserrole == 1);
+        @endphp
+
+
+
+   @if($brand == true) 
       <li class="treeview {{ Request::routeIs('all.brands') ? 'active' : '' }}">
         <a href="#">
           <i data-feather="message-circle"></i>
@@ -38,6 +59,12 @@
         </ul>
       </li>
 
+      @else
+      @endif
+
+
+
+      @if($category == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="mail"></i> <span>Category</span>
@@ -52,7 +79,11 @@
 
         </ul>
       </li>
+      @else
+      @endif
 
+
+      @if($product == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -66,8 +97,13 @@
           <li class="{{ Request::routeIs('manage.product') ? 'active' : '' }}"><a href="{{route('manage.product')}}"><i class="ti-more"></i>Manage Product</a></li>
         </ul>
       </li>
+      
+      @else
+      @endif
 
 
+
+      @if($slider == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -81,7 +117,11 @@
 
         </ul>
       </li>
+      @else
+      @endif
 
+
+      @if($coupons == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -95,7 +135,11 @@
 
         </ul>
       </li>
+      @else
+      @endif
 
+
+    @if($shipping == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -111,8 +155,12 @@
 
         </ul>
       </li>
+      @else
+      @endif
 
 
+
+      @if($blog == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -128,9 +176,12 @@
 
         </ul>
       </li>
+      @else
+      @endif
 
 
 
+      @if($setting == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -144,8 +195,11 @@
           <li class="{{ Request::routeIs('seo.setting') ? 'active' : '' }}"><a href="{{route('seo.setting')}}"><i class="ti-more"></i>Seo Setting</a></li>
         </ul>
       </li>
+      @else
+      @endif
 
 
+      @if($returnorder == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -160,6 +214,11 @@
         </ul>
       </li>
 
+      @else
+      @endif
+
+
+      @if($review == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -175,6 +234,10 @@
         </ul>
       </li>
 
+      @else
+      @endif
+
+
 
 
       
@@ -182,6 +245,10 @@
 
 
       <li class="header nav-small-cap">User Interface</li>
+
+
+      @if($orders == true)
+
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -200,7 +267,11 @@
           <li class="{{ Request::routeIs('cancel-orders') ? 'active' : '' }}"><a href="{{route('cancel-orders')}}"><i class="ti-more"></i>Cancelled Orders</a></li>
         </ul>
       </li>
+      
+      @else
+      @endif
 
+      @if($reports == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -214,6 +285,11 @@
           
         </ul>
       </li>
+            
+      @else
+      @endif
+
+      @if($stock == true)
 
       <li class="treeview">
         <a href="#">
@@ -229,6 +305,12 @@
         </ul>
       </li>
 
+      @else
+      @endif
+
+
+      
+     @if($alluser == true)
       <li class="treeview">
         <a href="#">
           <i data-feather="file"></i>
@@ -242,6 +324,28 @@
           
         </ul>
       </li>
+
+      @else
+      @endif
+ 
+
+      @if($adminuserrole == true)
+      <li class="treeview">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Admin User Role</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ Request::routeIs('all.admin.user') ? 'active' : '' }}"><a href="{{route('all.admin.user')}}"><i class="ti-more"></i> All Admin User</a></li>
+          
+        </ul>
+      </li>
+      
+      @else
+      @endif
  
 
       
