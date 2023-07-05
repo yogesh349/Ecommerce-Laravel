@@ -232,6 +232,10 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
         Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
         Route::get('/cancel/orders', [AllUserController::class, 'CancelOrders'])->name('cancel.orders');
+        /// Order Traking Route 
+Route::get('/order/tracking', [AllUserController::class, 'OrderTraking'])->name('order.tracking');    
+
+
 
 
 });
@@ -429,3 +433,8 @@ Route::prefix('stock')->group(function(){
         Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdminRole'])->name('delete.admin.user');
         
     });
+
+
+
+    /// Product Search Route 
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');

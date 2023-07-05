@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\MultiImage;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -57,7 +59,8 @@ class IndexController extends Controller
     public function SubCatWiseProduct($subcat_id,$slug){
 		$products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(6);
 		$categories = Category::orderBy('category_name_en','ASC')->get();
-		return view('frontend.product.subcategory_view',compact('products','categories'));
+        $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+		return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat'));
 
 	}
 
@@ -65,7 +68,8 @@ class IndexController extends Controller
     public function SubSubCatWiseProduct($subsubcat_id,$slug){
 		$products = Product::where('status',1)->where('subsubcategory_id',$subsubcat_id)->orderBy('id','DESC')->paginate(6);
 		$categories = Category::orderBy('category_name_en','ASC')->get();
-		return view('frontend.product.sub_subcategory_view',compact('products','categories'));
+        $breadsubsubcat = SubSubCategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get();
+		return view('frontend.product.sub_subcategory_view',compact('products','categories','breadsubsubcat'));
 
 	}
 
@@ -187,4 +191,16 @@ class IndexController extends Controller
 		));
 
 	} // end method 
+
+
+    // Product Seach 
+	public function ProductSearch(Request $request){
+		$item = $request->search;
+		// echo "$item";
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+		$products = Product::where('product_name_en','LIKE',"%$item%")->get();
+		return view('frontend.product.search',compact('products','categories'));
+
+
+	}
 }
